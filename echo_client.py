@@ -20,6 +20,26 @@ from typing import Optional
 
 
 # ---------------------------------------------------------------------------
+# Custom exceptions
+# ---------------------------------------------------------------------------
+
+class EchoError(Exception):
+    """Base class for all Echo client errors."""
+
+class EchoConnectionError(EchoError):
+    """Failed to connect to or communicate with the instrument."""
+
+class EchoTimeoutError(EchoError):
+    """Instrument did not respond within the allowed time."""
+
+class EchoProtocolError(EchoError):
+    """SOAP Fault or SUCCEEDED=False response from the instrument."""
+
+class EchoValidationError(EchoError, ValueError):
+    """Invalid input detected before any network call was made."""
+
+
+# ---------------------------------------------------------------------------
 # SOAP helpers
 # ---------------------------------------------------------------------------
 
@@ -304,13 +324,26 @@ def well_name_to_rc(name: str) -> tuple[int, int]:
     """Convert 'A1', 'B07', 'O10', 'AA12' to (row, col) 0-indexed."""
     m = re.match(r'^([A-Z]+)(\d+)$', name.upper())
     if not m:
-        raise ValueError(f"Invalid well name: {name!r}")
+        raise EchoValidationError(
+            f"Invalid well name: {name!r}. Expected format like 'A1', 'H12', or 'AA1'."
+        )
     letters, digits = m.group(1), m.group(2)
     if len(letters) == 1:
         row = ord(letters) - ord("A")
     else:  # double-letter rows (e.g. AA..AF for 1536-well)
         row = (ord(letters[0]) - ord("A") + 1) * 26 + (ord(letters[1]) - ord("A"))
     return row, int(digits) - 1
+
+
+def _validate_volume_nL(vol: float, context: str = "") -> None:
+    """Raise EchoValidationError if vol is not a positive multiple of 2.5 nL."""
+    prefix = f"{context}: " if context else ""
+    if vol <= 0:
+        raise EchoValidationError(f"{prefix}volume must be positive, got {vol} nL")
+    if round(vol % 2.5, 9) != 0:
+        raise EchoValidationError(
+            f"{prefix}volume {vol} nL is not a multiple of 2.5 nL (Echo minimum increment)"
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -475,6 +508,11 @@ class EchoClient:
             except Exception as e:
                 if not self._stop_events.is_set():
                     print(f"[event] Listener error: {e}")
+                    if self._event_callback:
+                        try:
+                            self._event_callback(-1, f"EVENT_ERROR: {e}", "listener", 0)
+                        except Exception:
+                            pass
                 break
 
     def _handle_event_message(self, raw: bytes):
@@ -946,6 +984,7 @@ class EchoClient:
             num_cols=plate_info.cols,
             save=True,
             check_src=False,
+            timeout=60.0,
         )
         elapsed = time.time() - t0
         print(f"[survey]   PlateSurvey complete in {elapsed:.1f}s")
@@ -1121,6 +1160,10 @@ class EchoClient:
         print(f"[transfer] {len(transfers)} transfers: "
               f"{src_plate_type} -> {dst_plate_type}")
 
+        # Validate all volumes before touching the network
+        for src, dst, vol in transfers:
+            _validate_volume_nL(vol, f"{src}→{dst}")
+
         # Pre-checks (mirror real client)
         self.get_current_src_plate_type()
         self.get_current_dst_plate_type()
@@ -1162,6 +1205,7 @@ class EchoClient:
                 start_row=0, start_col=0,
                 num_rows=num_rows, num_cols=src_info.cols,
                 save=True, check_src=False,
+                timeout=60.0,
             )
             print(f"[transfer]   Survey done in {time.time()-t0:.1f}s "
                   f"({len(survey.wells)} wells)")

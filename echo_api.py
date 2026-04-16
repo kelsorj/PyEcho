@@ -29,7 +29,7 @@ from typing import Optional
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 
 from echo_client import (
     EchoClient,
@@ -123,6 +123,13 @@ class ConnectBody(BaseModel):
     rpc_port: int = 8000
     event_port: int = 8010
 
+    @field_validator("ip")
+    @classmethod
+    def _ip_not_empty(cls, v: str) -> str:
+        if not v.strip():
+            raise ValueError("ip must not be empty or whitespace")
+        return v.strip()
+
 
 class BoolValue(BaseModel):
     value: bool
@@ -136,7 +143,7 @@ class PlateTypeBody(BaseModel):
 class TransferItem(BaseModel):
     src: str
     dst: str
-    volume_nL: float
+    volume_nL: float = Field(gt=0, description="Transfer volume in nanoliters (must be > 0)")
 
 
 class TransferBody(BaseModel):
@@ -148,8 +155,20 @@ class TransferBody(BaseModel):
     protocol_name: str = "ui-transfer"
 
 
+_VALID_DRY_TYPES = frozenset({"TWO_PASS"})
+
+
 class DryBody(BaseModel):
     dry_type: str = "TWO_PASS"
+
+    @field_validator("dry_type")
+    @classmethod
+    def _dry_type_known(cls, v: str) -> str:
+        if v not in _VALID_DRY_TYPES:
+            raise ValueError(
+                f"Unknown dry_type {v!r}. Known types: {sorted(_VALID_DRY_TYPES)}"
+            )
+        return v
 
 
 class SurveyBody(BaseModel):
