@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Echo 655 Control</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- Connect modal (shown until connected) -->
+<div id="connect-overlay" class="overlay">
+  <div class="modal">
+    <h2>Connect To Instrument</h2>
+    <p>Enter the Echo Instrument IP address and click Connect.</p>
+    <label>Echo Instrument:
+      <input id="connect-ip" type="text" value="192.168.0.26" placeholder="192.168.0.26">
+    </label>
+    <div class="modal-actions">
+      <button id="connect-btn" class="primary">Connect</button>
+    </div>
+    <div id="connect-error" class="error"></div>
+  </div>
+</div>
+
+<!-- Main app (shown after connect) -->
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="brand">Echo 655 Control</div>
+    <button id="disconnect-btn" class="ghost small">Disconnect</button>
+  </header>
+
+  <div class="layout">
+    <main class="main">
+      <nav class="tabs">
+        <button class="tab active" data-tab="controls">Controls</button>
+        <button class="tab" data-tab="labware">Labware</button>
+        <button class="tab" data-tab="survey">Survey</button>
+        <button class="tab" data-tab="transfer">Plate Transfer</button>
+        <button class="tab" data-tab="picklist">Pick-List Transfer</button>
+      </nav>
+
+      <!-- Controls tab -->
+      <section id="tab-controls" class="tab-panel active">
+        <div class="card">
+          <div class="card-title">Stages</div>
+          <button id="home-btn">Home Stages</button>
+          <span class="hint">Blocks ~22 s while axes home.</span>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Coupling Fluid Pump</div>
+          <div class="row">
+            <label class="toggle"><input type="checkbox" id="pump-toggle"> Pump On</label>
+            <div class="group">
+              <span>Nozzle:</span>
+              <label><input type="radio" name="nozzle" value="up"> Up</label>
+              <label><input type="radio" name="nozzle" value="down" checked> Down</label>
+            </div>
+            <div class="group">
+              <span>Direction:</span>
+              <label><input type="radio" name="pumpdir" value="normal" checked> Normal</label>
+              <label><input type="radio" name="pumpdir" value="reverse"> Reverse</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Plate Dryer</div>
+          <div class="row">
+            <button id="dry-btn">Dry Plate</button>
+            <span class="hint">DryPlate(TWO_PASS), ~10 s. Needs a plate loaded.</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Anti-Static Bar (Ionizer)</div>
+          <label class="toggle"><input type="checkbox" id="ionizer-toggle"> Ionizer On</label>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Vacuum Pump</div>
+          <label class="toggle"><input type="checkbox" id="vacuum-toggle"> Vacuum Pump On</label>
+          <span class="hint">Controls the pump only. Does not engage the mechanism.</span>
+        </div>
+      </section>
+
+      <!-- Labware tab -->
+      <section id="tab-labware" class="tab-panel">
+        <div class="card">
+          <div class="card-title">Source Plates</div>
+          <table id="src-plate-table" class="plate-table">
+            <thead><tr><th>Name</th><th>Wells</th><th>Fluid</th><th>Format</th><th>Max µL</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">Destination Plates</div>
+          <table id="dst-plate-table" class="plate-table">
+            <thead><tr><th>Name</th><th>Wells</th><th>Fluid</th><th>Format</th><th>Max µL</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Survey tab -->
+      <section id="tab-survey" class="tab-panel">
+        <div class="card">
+          <div class="card-title">Plate Survey</div>
+          <div class="row">
+            <label>Plate type:
+              <select id="survey-plate"></select>
+            </label>
+            <button id="survey-btn">Run Survey</button>
+            <span class="hint">Blocks ~23 s for a 384-well plate.</span>
+          </div>
+          <div id="survey-stats" class="stats"></div>
+          <div id="survey-grid-wrap" class="grid-wrap"></div>
+        </div>
+      </section>
+
+      <!-- Transfer tab -->
+      <section id="tab-transfer" class="tab-panel">
+        <div class="card">
+          <div class="card-title">Plate Transfer (manual)</div>
+          <div class="row">
+            <label>Source type:
+              <select id="transfer-src-type"></select>
+            </label>
+            <label>Dest type:
+              <select id="transfer-dst-type"></select>
+            </label>
+          </div>
+          <div class="row">
+            <label><input type="checkbox" id="transfer-do-survey" checked> Run survey first</label>
+            <label><input type="checkbox" id="transfer-close-door" checked> Close door before transfer</label>
+          </div>
+          <table class="transfer-table" id="transfer-table">
+            <thead><tr><th>Src well</th><th>Dst well</th><th>Volume (nL)</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <div class="row">
+            <button id="transfer-add-row">+ Add row</button>
+            <button id="transfer-run" class="primary">Run Transfer</button>
+          </div>
+          <div id="transfer-result"></div>
+        </div>
+      </section>
+
+      <!-- Picklist tab -->
+      <section id="tab-picklist" class="tab-panel">
+        <div class="card">
+          <div class="card-title">Pick-List Transfer</div>
+          <div class="row">
+            <label>CSV file: <input id="picklist-file" type="file" accept=".csv,.tsv,.txt"></label>
+            <button id="picklist-parse-btn">Parse</button>
+            <span class="hint">Columns detected by name. Required: source well, destination well, transfer volume (nL).</span>
+          </div>
+          <div class="row">
+            <label>Source type:
+              <select id="picklist-src-type"></select>
+            </label>
+            <label>Dest type:
+              <select id="picklist-dst-type"></select>
+            </label>
+            <label><input type="checkbox" id="picklist-do-survey" checked> Run survey first</label>
+            <button id="picklist-run" class="primary" disabled>Run Picklist</button>
+          </div>
+          <div id="picklist-summary"></div>
+          <table class="transfer-table" id="picklist-table">
+            <thead><tr><th>#</th><th>Src well</th><th>Dst well</th><th>Volume (nL)</th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <div id="picklist-result"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Right sidebar -->
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-title">Source Plate</div>
+        <div class="plate-slot">
+          <span id="src-plate-name" class="plate-name">None</span>
+          <span id="src-plate-led" class="led"></span>
+        </div>
+        <div class="row">
+          <button class="small" data-action="extend-src">Eject</button>
+          <button class="small" data-action="load-src-prompt">Load…</button>
+        </div>
+        <div class="hint">Eject extends the gripper. Place / remove plate, then click Load to declare what's on the stage.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Destination Plate</div>
+        <div class="plate-slot">
+          <span id="dst-plate-name" class="plate-name">None</span>
+          <span id="dst-plate-led" class="led"></span>
+        </div>
+        <div class="row">
+          <button class="small" data-action="extend-dst">Eject</button>
+          <button class="small" data-action="load-dst-prompt">Load…</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Door</div>
+        <div class="row">
+          <button class="small" id="door-open">Open</button>
+          <button class="small" id="door-close">Close</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">System Status</div>
+        <div id="status-grid" class="status-grid"></div>
+        <div class="temps">
+          <div>Coupling fluid: <span id="temp-coupling">—</span> °C</div>
+          <div>System: <span id="temp-system">—</span> °C</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Log pane -->
+  <section class="log-pane">
+    <div class="log-header">
+      <span>Event Log</span>
+      <button id="log-clear" class="small">Clear</button>
+    </div>
+    <pre id="log" class="log"></pre>
+  </section>
+
+  <footer class="statusbar">
+    <div>Connected Instrument: <span id="sb-instrument">—</span></div>
+    <div>Serial Number: <span id="sb-serial">—</span></div>
+    <div>Version: <span id="sb-version">—</span></div>
+    <div id="sb-status" class="sb-status">Ready</div>
+  </footer>
+</div>
+
+<!-- Load prompt modal -->
+<div id="load-modal" class="overlay hidden">
+  <div class="modal">
+    <h2 id="load-title">Load Plate</h2>
+    <p id="load-help" class="hint">What is on the stage now? Pick a plate type, or None if the stage is empty.</p>
+    <label>Plate type:
+      <select id="load-plate-type"></select>
+    </label>
+    <div class="modal-actions">
+      <button id="load-cancel" class="ghost">Cancel</button>
+      <button id="load-go" class="primary">Retract Gripper</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

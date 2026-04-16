@@ -1,0 +1,270 @@
+============================================================
+Echo 655 Initialization
+============================================================
+
+[1/10] Subscribing to event stream...
+[event] Subscribed to event stream on port 8010
+[2/10] Reading digital I/O status...
+[event] 04/15/26 20:37:47.292   SOAPFluidTransferProxy.cpp(193) INFO    GetDIOEx2() START
+        Coupling fluid temp: 22.4 C
+        RF subsystem temp:   29.7 C
+[3/10] Checking instrument lock state...
+        Locked: False - Instrument is not locked.
+[4/10] Setting pump direction...
+[event] 04/15/26 20:37:47.318   SOAPFluidTransferProxy.cpp(954) INFO    GetDIOEx2() END
+[event] 04/15/26 20:37:47.324   SOAPFluidTransferProxy.cpp(193) INFO    GetInstrumentLockState() START
+[event] 04/15/26 20:37:47.324   SOAPFluidTransferProxy.cpp(954) INFO    GetInstrumentLockState() END
+[event] 04/15/26 20:37:47.339   SOAPFluidTransferProxy.cpp(193) INFO    SetPumpDir() START
+        OK
+[5/10] Enabling bubbler pump...
+[event] True
+[event] 04/15/26 20:37:47.341   SOAPFluidTransferProxy.cpp(954) INFO    SetPumpDir() END
+[event] 04/15/26 20:37:47.352   SOAPFluidTransferProxy.cpp(193) INFO    EnableBubblerPump() START
+[event] True
+[event] 04/15/26 20:37:47.359   SOAPFluidTransferProxy.cpp(954) INFO    EnableBubblerPump() END
+        OK
+[6/10] Getting instrument info...
+[event] 04/15/26 20:37:47.368   SOAPFluidTransferProxy.cpp(193) INFO    GetDIOEx2() START
+        Model:    Echo 655
+        Serial:   E6XX-22170
+[event] 04/15/26 20:37:47.384   SOAPFluidTransferProxy.cpp(193) INFO    GetInstrumentInfo() START
+        Software: 3.2.2
+        Status:   Normal
+        Boot:     2025-12-06_15-16-07
+[7/10] Getting Echo configuration...
+[event] 04/15/26 20:37:47.386   SOAPFluidTransferProxy.cpp(954) INFO    GetInstrumentInfo() END
+[event] 04/15/26 20:37:47.402   SOAPFluidTransferProxy.cpp(193) INFO    GetEchoConfiguration() START
+        Config length: 2120 chars
+[8/10] Re-reading digital I/O...
+[event] 04/15/26 20:37:47.403   SOAPFluidTransferProxy.cpp(954) INFO    GetDIOEx2() END
+[event] 04/15/26 20:37:47.420   SOAPFluidTransferProxy.cpp(954) INFO    GetEchoConfiguration() END
+[event] 04/15/26 20:37:47.433   SOAPFluidTransferProxy.cpp(193) INFO    GetDIOEx2() START
+[event] 04/15/26 20:37:47.463   SOAPFluidTransferProxy.cpp(954) INFO    GetDIOEx2() END
+[9/10] Enumerating source plate types...
+[event] 04/15/26 20:37:47.481   SOAPFluidTransferProxy.cpp(193) INFO    GetAllSrcPlateNames() START
+[event] 04/15/26 20:37:47.534   SOAPFluidTransferProxy.cpp(954) INFO    GetAllSrcPlateNames() END
+        1536LDV_DMSO: 32x48 (DMSO, 6.0 uL)
+[event] 04/15/26 20:37:47.543   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.547   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+[event] 04/15/26 20:37:47.559   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+        1536LDV_DMSO_HT: 32x48 (DMSO, 6.0 uL)
+[event] 04/15/26 20:37:47.563   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+        384LDV_AQ_B2: 16x24 (AQ, 20.0 uL)
+[event] 04/15/26 20:37:47.575   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.578   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+[event] 04/15/26 20:37:47.589   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.593   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+        384LDV_AQ_P2: 16x24 (AQ, 20.0 uL)
+        384LDV_DMSO: 16x24 (DMSO, 20.0 uL)
+[event] 04/15/26 20:37:47.605   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.609   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+[event] 04/15/26 20:37:47.621   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.624   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+        384PP_AQ_CP: 16x24 (CP-Buffer, 50.0 uL)
+[event] 04/15/26 20:37:47.636   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+        384PP_AQ_GP3: 16x24 (Glycerol, 50.0 uL)
+[event] 04/15/26 20:37:47.640   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+        384PP_AQ_SP2: 16x24 (AQ, 50.0 uL)
+[event] 04/15/26 20:37:47.652   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.655   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+[event] 04/15/26 20:37:47.663   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.667   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+        384PP_DMSO2: 16x24 (DMSO, 50.0 uL)
+[10/10] Enumerating destination plate types...
+[event] 04/15/26 20:37:47.683   SOAPFluidTransferProxy.cpp(193) INFO    GetAllDestPlateNames() START
+[event] 04/15/26 20:37:47.691   SOAPFluidTransferProxy.cpp(954) INFO    GetAllDestPlateNames() END
+[event] 04/15/26 20:37:47.699   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.702   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+        384 Greiner u-clear: 16x24 (, 100.0 uL)
+[event] 04/15/26 20:37:47.715   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+        Corning 384-well flat clear bottom 3765: 16x24 (, 50.0 uL)
+[event] 04/15/26 20:37:47.718   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+[event] 04/15/26 20:37:47.730   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+        1536LDV_Dest: 32x48 (, 6.0 uL)
+[event] 04/15/26 20:37:47.735   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+[event] 04/15/26 20:37:47.746   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.749   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+        384 CellVis: 16x24 (, 100.0 uL)
+        384_CellVis: 16x24 (, 100.0 uL)
+[event] 04/15/26 20:37:47.762   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.765   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+[event] 04/15/26 20:37:47.775   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.779   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+        384LDV_Dest: 16x24 (, 20.0 uL)
+[event] 04/15/26 20:37:47.793   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+        384PP_Dest: 16x24 (, 50.0 uL)
+[event] 04/15/26 20:37:47.796   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+        96_Dest: 8x12 (, 340.0 uL)
+[event] 04/15/26 20:37:47.808   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.812   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+[event] 04/15/26 20:37:47.824   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.828   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+        Greiner_1536HiBasePS_782096: 32x48 (, 6.0 uL)
+        Greiner_384PS_781096: 16x24 (, 50.0 uL)
+
+[init] Reading power calibration...
+[event] 04/15/26 20:37:47.839   SOAPFluidTransferProxy.cpp(193) INFO    GetPlateInfoEx() START
+[event] 04/15/26 20:37:47.843   SOAPFluidTransferProxy.cpp(954) INFO    GetPlateInfoEx() END
+[event] 04/15/26 20:37:47.855   SOAPFluidTransferProxy.cpp(193) INFO    GetDIO() START
+[event] 04/15/26 20:37:47.894   SOAPFluidTransferProxy.cpp(954) INFO    GetDIO() END
+[event] 04/15/26 20:37:47.903   SOAPFluidTransferProxy.cpp(193) INFO    GetPwrCal() START
+[event] 04/15/26 20:37:47.910   SOAPFluidTransferProxy.cpp(954) INFO    GetPwrCal() END
+[event] 04/15/26 20:37:47.918   SOAPFluidTransferProxy.cpp(193) INFO    GetPwrCal() START
+[event] 04/15/26 20:37:47.926   SOAPFluidTransferProxy.cpp(954) INFO    GetPwrCal() END
+[event] 04/15/26 20:37:47.929   SOAPFluidTransferProxy.cpp(193) INFO    GetDIO() START
+[init] Reading protocols...
+[event] 04/15/26 20:37:47.958   SOAPFluidTransferProxy.cpp(954) INFO    GetDIO() END
+[event] 04/15/26 20:37:47.964   SOAPFluidTransferProxy.cpp(193) INFO    GetAllProtocolNames() START
+[event] 04/15/26 20:37:47.967   SOAPFluidTransferProxy.cpp(954) INFO    GetAllProtocolNames() END
+[event] 04/15/26 20:37:47.975   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:47.979   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:47.991   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:47.995   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.011   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.016   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.027   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.031   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.042   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.054   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.058   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.065   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.074   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.080   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.089   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.095   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.105   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.184   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.246   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.388   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.464   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.606   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.699   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.711   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.730   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.811   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.871   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.877   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:48.887   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:48.965   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.028   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.106   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.168   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.248   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.309   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.451   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.527   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.606   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.668   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.674   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.684   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.689   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.693   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.699   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.708   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.714   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.731   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.736   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.746   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.752   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.762   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.768   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+[event] 04/15/26 20:37:49.772   SOAPFluidTransferProxy.cpp(193) INFO    GetProtocol() START
+[event] 04/15/26 20:37:49.778   SOAPFluidTransferProxy.cpp(954) INFO    GetProtocol() END
+        27 protocols loaded
+[init] Reading parameters...
+[event] 04/15/26 20:37:49.793   SOAPFluidTransferProxy.cpp(193) INFO    RetrieveParameter() START
+[event] 04/15/26 20:37:49.794   SOAPFluidTransferProxy.cpp(954) INFO    RetrieveParameter() END
+[init] Checking current plate types...
+[event] 04/15/26 20:37:49.809   SOAPFluidTransferProxy.cpp(193) INFO    RetrieveParameter() START
+[event] 04/15/26 20:37:49.810   SOAPFluidTransferProxy.cpp(954) INFO    RetrieveParameter() END
+[event] 04/15/26 20:37:49.825   SOAPFluidTransferProxy.cpp(193) INFO    GetCurrentSrcPlateType() START
+[event] 04/15/26 20:37:49.825   SOAPFluidTransferProxy.cpp(954) INFO    GetCurrentSrcPlateType() END
+        Current src: None
+        Current dst: None
+[event] 04/15/26 20:37:49.839   SOAPFluidTransferProxy.cpp(193) INFO    GetCurrentDstPlateType() START
+[init] Checking storage mode...
+[event] 04/15/26 20:37:49.841   SOAPFluidTransferProxy.cpp(954) INFO    GetCurrentDstPlateType() END
+[event] 04/15/26 20:37:49.851   SOAPFluidTransferProxy.cpp(193) INFO    IsStorageMode() START
+[event] 04/15/26 20:37:49.852   SOAPFluidTransferProxy.cpp(954) INFO    IsStorageMode() END
+        Storage mode: False
+[event] 04/15/26 20:37:49.870   SOAPFluidTransferProxy.cpp(193) INFO    GetDIOEx2() START
+
+============================================================
+Initialization complete
+============================================================
+
+============================================================
+Homing Stage
+============================================================
+[home] Checking instrument lock state...
+[event] 04/15/26 20:37:49.908   SOAPFluidTransferProxy.cpp(954) INFO    GetDIOEx2() END
+        Locked: False - Instrument is not locked.
+[home] Checking storage mode...
+[event] 04/15/26 20:37:49.917   SOAPFluidTransferProxy.cpp(193) INFO    GetInstrumentLockState() START
+[event] 04/15/26 20:37:49.918   SOAPFluidTransferProxy.cpp(954) INFO    GetInstrumentLockState() END
+[event] 04/15/26 20:37:49.933   SOAPFluidTransferProxy.cpp(193) INFO    IsStorageMode() START
+[event] 04/15/26 20:37:49.934   SOAPFluidTransferProxy.cpp(954) INFO    IsStorageMode() END
+        Storage mode: False
+[home] Sending HomeAxes command (this may take ~22 seconds)...
+[event] 04/15/26 20:37:49.949   SOAPFluidTransferProxy.cpp(193) INFO    HomeAxes() START
+[event] True
+[event] 04/15/26 20:37:49.986   FluidTransferServer.cpp(7122)   INFO    Homing axes begin ...
+[event] False
+[event] 04/15/26 20:37:49.990   SOAPFluidTransferProxy.cpp(193) INFO    GetDIOEx2() START
+[event] 04/15/26 20:37:50.020   SOAPFluidTransferProxy.cpp(954) INFO    GetDIOEx2() END
+[event] False
+[event] True
+[event] 04/15/26 20:37:50.676   AxisHomingService.cpp(275)      INFO    Homing TransducerZ1 axis.
+[event] 04/15/26 20:37:50.789   AxisHomingService.cpp(757)      INFO    New home will be 0 (-15.98 microns previously).
+[event] 04/15/26 20:37:50.809   AxisHomingService.cpp(275)      INFO    Homing TransducerZ0 axis.
+[event] 04/15/26 20:37:51.119   AxisHomingService.cpp(757)      INFO    New home will be 0 (-2.03 microns previously).
+[event] 04/15/26 20:37:51.150   AxisHomingService.cpp(275)      INFO    Homing TransducerX axis.
+[event] 04/15/26 20:37:55.998   AxisHomingService.cpp(757)      INFO    New home will be 0 (-4.95 microns previously).
+[event] 04/15/26 20:37:56.026   AxisHomingService.cpp(275)      INFO    Homing TransducerY axis.
+[event] 22.4505
+[event] 29.671
+[event] 04/15/26 20:37:58.187   AxisHomingService.cpp(757)      INFO    New home will be 0 (-3.43 microns previously).
+[event] 04/15/26 20:37:58.247   AxisHomingService.cpp(370)      INFO    Homing SourceY axis.
+[event] 04/15/26 20:37:58.410   AxisHomingService.cpp(757)      INFO    New home will be 0 (-9.24 microns previously).
+[event] 04/15/26 20:37:58.492   AxisHomingService.cpp(370)      INFO    Homing ReceiverZ axis.
+[event] 04/15/26 20:37:58.856   AxisHomingService.cpp(757)      INFO    New home will be 0 (13.07 microns previously).
+[event] 04/15/26 20:37:58.862   AxisHomingService.cpp(523)      INFO    Homing ReceiverX axis.
+[event] 04/15/26 20:37:59.228   AxisHomingService.cpp(757)      INFO    New home will be 0 (-5.52 microns previously).
+[event] 04/15/26 20:37:59.265   AxisHomingService.cpp(370)      INFO    Homing ReceiverY axis.
+[event] 04/15/26 20:38:02.516   AxisHomingService.cpp(757)      INFO    New home will be 0 (16.00 microns previously).
+[event] 04/15/26 20:38:05.827   AxisHomingService.cpp(419)      INFO    Homing ReceiverTheta axis.
+[event] 04/15/26 20:38:07.012   AxisHomingService.cpp(757)      INFO    New home will be 0 (0.19 microns previously).
+[event] False
+[event] False
+[event] False
+[event] True
+[event] False
+[event] False
+[event] 04/15/26 20:38:11.486   FluidTransferServer.cpp(7242)   INFO    Homing axes end.
+[event] 04/15/26 20:38:11.490   SOAPFluidTransferProxy.cpp(193) INFO    GetDIOEx2() START
+        Result: SUCCEEDED=True, Status=OK
+        Elapsed: 21.6s
+[home] Post-home sensor verification...
+[event] False
+[event] False
+[event] True
+[event] 04/15/26 20:38:11.517   SOAPFluidTransferProxy.cpp(954) INFO    HomeAxes() END
+[event] 04/15/26 20:38:11.519   SOAPFluidTransferProxy.cpp(954) INFO    GetDIOEx2() END
+[event] 04/15/26 20:38:11.523   SOAPFluidTransferProxy.cpp(193) INFO    GetDIOEx2() START
+[event] 04/15/26 20:38:11.551   SOAPFluidTransferProxy.cpp(954) INFO    GetDIOEx2() END
+        Poll 1: CF=22.49C, RF=29.67C
+[event] 04/15/26 20:38:11.559   SOAPFluidTransferProxy.cpp(193) INFO    GetDIOEx2() START
+        Poll 2: CF=22.49C, RF=29.67C
+[event] True
+[event] 04/15/26 20:38:11.599   SOAPFluidTransferProxy.cpp(954) INFO    GetDIOEx2() END
+        Poll 3: CF=22.49C, RF=29.67C
+[event] 04/15/26 20:38:11.606   SOAPFluidTransferProxy.cpp(193) INFO    GetDIOEx2() START
+[event] 04/15/26 20:38:11.631   SOAPFluidTransferProxy.cpp(954) INFO    GetDIOEx2() END
+[event] 04/15/26 20:38:11.638   SOAPFluidTransferProxy.cpp(193) INFO    GetDIOEx2() START
+[event] 04/15/26 20:38:11.663   SOAPFluidTransferProxy.cpp(954) INFO    GetDIOEx2() END
+        Poll 4: CF=22.49C, RF=29.67C
+
+============================================================
+Homing complete
+============================================================
+[event] Unsubscribed
