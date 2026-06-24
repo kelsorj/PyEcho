@@ -3,17 +3,13 @@
 A Python library, REST API, and web UI for controlling a Beckman Coulter
 **Echo 655** acoustic liquid dispenser over the network.
 
-The protocol was **reverse-engineered from Wireshark captures** of the
-vendor's client talking to the instrument. This project reconstructs 
-the wire protocol and exposes it as:
-
 1. A **Python library** (`echo_client.py`) — stdlib-only, drop-in
 2. A **REST API** (`echo_api.py`) — FastAPI, with Server-Sent Events
 3. A **web UI** (`static/`) — plain HTML + JS, embedded in the API server
 
 All three layers are usable independently.
 
-> ⚠️ **This is reverse-engineered software.** It is not endorsed by or
+> ⚠️ This is not endorsed by or
 > affiliated with Beckman Coulter / Labcyte. Use at your own risk. It has
 > been tested against firmware **3.2.2** on an **Echo 655**.
 > Other models (Echo 525/550/575, 650T) may speak similar
